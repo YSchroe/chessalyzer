@@ -6,8 +6,15 @@ import styles from './Sidebar.css';
 export default function Home(): JSX.Element {
 	return (
 		<div className={styles.container} data-tid="container">
-			<h2>THE SIDEBAR</h2>
-			<Link to={routes.COUNTER}>to Counter</Link>
+			<Link to={routes.HOME}>
+				<div className={styles.link}>Home</div>
+			</Link>
+			<Link to={routes.CHESSBOARD}>
+				<div className={styles.link}>Chessboard</div>
+			</Link>
+			<Link to={routes.COUNTER}>
+				<div className={styles.link}>Counter</div>
+			</Link>
 		</div>
 	);
 }

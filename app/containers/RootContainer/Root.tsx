@@ -3,10 +3,10 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { hot } from 'react-hot-loader/root';
 import { History } from 'history';
-import { Store } from '../store';
-import Routes from '../Routes';
-import Sidebar from '../components/sidebar/Sidebar';
-import Topbar from '../components/topbar/Topbar';
+import { Store } from '../../store';
+import Routes from '../../Routes';
+import Sidebar from '../../components/sidebar/Sidebar';
+import Topbar from '../../components/topbar/Topbar';
 
 import styles from './Root.css';
 
@@ -21,7 +21,9 @@ const Root = ({ store, history }: Props) => (
 			<Topbar />
 			<div className={styles.container}>
 				<Sidebar />
-				<Routes />
+				<div className="container">
+					<Routes />
+				</div>
 			</div>
 		</ConnectedRouter>
 	</Provider>

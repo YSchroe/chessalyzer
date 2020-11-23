@@ -11,12 +11,11 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import { app, BrowserWindow } from 'electron';
+import { app, ipcMain, BrowserWindow } from 'electron';
+import { Chessalyzer, Tracker } from 'chessalyzer.js';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
-
-require('./backend');
 
 export default class AppUpdater {
 	constructor() {
@@ -137,4 +136,15 @@ app.on('activate', () => {
 	// On macOS it's common to re-create a window in the app when the
 	// dock icon is clicked and there are no other windows open.
 	if (mainWindow === null) createWindow();
+});
+
+// IPC
+// ___
+ipcMain.handle('perform-action', async (_, ...args: any) => {
+	const tileTracker = new Tracker.Tile();
+	await Chessalyzer.startBatchMultiCore(
+		`C:\\Users\\yanni\\Documents\\GitHub\\chessalyzer.js\\test\\lichess_db_standard_rated_2013-01_min.pgn`,
+		tileTracker
+	);
+	return tileTracker;
 });
